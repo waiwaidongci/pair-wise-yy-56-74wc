@@ -35,7 +35,7 @@ export interface InspectionPlan {
   method: string
   weldIds: string[]
   inspector: string
-  state: '待执行' | '执行中' | '已完成'
+  state: '待执行' | '执行中' | '已完成' | '待重排' | '待补录'
 }
 
 export interface AuditEvent {
