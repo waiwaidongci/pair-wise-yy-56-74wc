@@ -27,6 +27,10 @@ const mockData = {
     { id:'IP-2026-0930-A', date:'2026-09-30', method:'UT + MT', weldIds:['W-105','W-106','W-108'], inspector:'陈锋', state:'待执行' },
     { id:'IP-2026-0929-B', date:'2026-09-29', method:'UT', weldIds:['W-104'], inspector:'赵岚', state:'执行中' },
   ],
+  retiredResults: [
+    { resultId:'RR-UT-2026-0918', planId:'IP-2026-0929-B', batchId:'', weldId:'W-104', method:'UT', report:'UT-2026-0918', outcome:'Ⅱ级夹渣，返修后待复检' },
+    { resultId:'RR-MT-2026-0921', planId:'IP-2026-0930-A', batchId:'', weldId:'W-107', method:'MT', report:'MT-2026-0921', outcome:'Ⅲ级未熔合，返修中' },
+  ],
 }
 
 export const appConfig: ApplicationConfig = {

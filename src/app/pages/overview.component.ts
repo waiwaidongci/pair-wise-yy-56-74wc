@@ -30,7 +30,11 @@ export class OverviewComponent implements OnInit {
   statusOptions = ['全部','待检测','合格','返修中','待复检','已关闭']
   ngOnInit() {
     this.store.select('welds').subscribe((state) => this.state = state)
-    this.api.load().subscribe(({ welds, plans }) => this.store.dispatch(A.loadWeldsSuccess({ welds, plans })))
+    this.api.load().subscribe(({ welds, plans, retiredResults }) => {
+      this.store.dispatch(A.loadWeldsSuccess({ welds, plans, retiredResults }))
+      // 旧计划只有检测人，没有设备与资格版本：接入排程批次并升级为待补录，历史结果不丢
+      this.store.dispatch(A.initScheduling({ legacyPlans: plans, retiredResults }))
+    })
   }
   get filtered() { return this.filter === '全部' ? this.state?.welds ?? [] : (this.state?.welds ?? []).filter((item) => item.status === this.filter) }
   get pending() { return (this.state?.welds ?? []).filter((item) => ['待检测','返修中','待复检'].includes(item.status)).length }
